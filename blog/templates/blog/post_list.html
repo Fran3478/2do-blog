@@ -1,21 +1,12 @@
-<html>
-<head>
-    <title>
-        Fran3478's blog
-    </title>
-</head>
-
-<body>
-    <div>
-        <h1><a href="/">Fran3478 Blog</a></h1>
-    </div>
-
+{% extends 'blog/base.html' %}
+{% block content %}
     {% for post in posts %}
-        <div>
-            <p>publicado: {{post.publish_date}}<p>
-            <h2><a href=''>{{post.title}}</a></h2>
-            <p>{{post.text|linebreaksbr}}</p>
+        <div class="post">
+            <div class="date">
+                <p>publicado: {{ post.publish_date }}</p>
+            </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-    {%endfor%}
-</body>
-</html>
+    {% endfor %}
+{% endblock %}
